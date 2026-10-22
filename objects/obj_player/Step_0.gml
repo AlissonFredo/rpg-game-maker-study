@@ -1,3 +1,6 @@
+// Ajustando profundidade do player
+depth = -y;
+
 // pegando os inputs do usuario
 up = keyboard_check(vk_up);
 down = keyboard_check(vk_down);

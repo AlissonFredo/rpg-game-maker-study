@@ -4,6 +4,8 @@ estado_idle = new estado();
 // iniciando o estado walk (andar)
 estado_walk = new estado();
 
+estado_attack = new estado();
+
 // estado idle precisa de um inicia
 estado_idle.inicia = function() {
 	// definindo a sprite atual com base na direcao que o player esta olhando	
@@ -20,6 +22,10 @@ estado_idle.roda = function() {
 	// se estiver em movimento, entao vou para o estado de walk
 	if(up xor down or left xor right) {
 		troca_estado(estado_walk);
+	}
+	
+	if(attack) {
+		troca_estado(estado_attack);
 	}
 }
 
@@ -49,6 +55,29 @@ estado_walk.roda = function() {
 	if(velocidade_vertical == 0 and velocidade_horizontal == 0) {
 		troca_estado(estado_idle);
 	}
+	
+	if(attack) {
+		troca_estado(estado_attack);
+	}
+}
+
+estado_attack.inicia = function() {
+	sprite_index = define_sprite(direcao, spr_player_attack_side, spr_player_attack_back, spr_player_attack_front);
+	image_index = 0;
+	velocidade_horizontal = 0;
+	velocidade_vertical = 0;
+}
+
+estado_attack.roda = function() {
+	
+	show_debug_message(image_index);
+	show_debug_message(image_number);
+	
+	
+	// saindo do ataque quando ele acabar
+	if(image_index >= image_number - 0.2) {
+		troca_estado(estado_idle);
+	}
 }
 
 // iniciar variaveis
@@ -67,7 +96,7 @@ velocidade_vertical = 0;
 velocidade_player = 2;
 
 // controlando a direcao que o player esta olhando
-direcao = 0;
+direcao = 3;
 
 // iniciando maquina de estados
 inicia_estado(estado_idle);
