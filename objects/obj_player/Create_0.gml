@@ -75,7 +75,7 @@ estado_attack.roda = function() {
 	
 	
 	// saindo do ataque quando ele acabar
-	if(image_index >= image_number - 0.2) {
+	if(image_index >= image_number - 0.5) {
 		troca_estado(estado_idle);
 	}
 }
